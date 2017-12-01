@@ -33,10 +33,12 @@ generator.initialize()
 
 
 generator_options = generator_pb2.GeneratorOptions()
-generator_options.args['temperature'].float_value = 1  # Higher is more random; 1.0 is default.
+generator_options.args['temperature'].float_value = 0.1  # Higher is more random; 1.0 is default.
 generate_section = generator_options.generate_sections.add(start_time=0, end_time=20)
 
+sequence = generator.generate(music_pb2.NoteSequence(), generator_options)
+mm.sequence_proto_to_midi_file(sequence, 'sample.mid')
 
-for i in range(20):
-    sequence = generator.generate(music_pb2.NoteSequence(), generator_options)
-    mm.sequence_proto_to_midi_file(sequence, 'sample'+str(i)+'.mid')
+# for i in range(20):
+    # sequence = generator.generate(music_pb2.NoteSequence(), generator_options)
+    # mm.sequence_proto_to_midi_file(sequence, 'sample'+str(i)+'.mid')
