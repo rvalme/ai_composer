@@ -39,4 +39,4 @@ generate_section = generator_options.generate_sections.add(start_time=0, end_tim
 
 for i in range(20):
     sequence = generator.generate(music_pb2.NoteSequence(), generator_options)
-    mm.sequence_proto_to_midi_file(sequence, 'sample'+i+'.mid')
+    mm.sequence_proto_to_midi_file(sequence, 'sample'+str(i)+'.mid')
