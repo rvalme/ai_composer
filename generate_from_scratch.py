@@ -1,5 +1,5 @@
 import os
-from magenta.models.performance_rnn import performance_sequence_generator
+# from magenta.models.performance_rnn import performance_sequence_generator
 from magenta.models.melody_rnn import melody_rnn_sequence_generator
 import magenta
 from magenta.protobuf import generator_pb2
@@ -36,6 +36,7 @@ generator_options = generator_pb2.GeneratorOptions()
 generator_options.args['temperature'].float_value = 1  # Higher is more random; 1.0 is default.
 generate_section = generator_options.generate_sections.add(start_time=0, end_time=20)
 
-sequence = generator.generate(music_pb2.NoteSequence(), generator_options)
 
-mm.sequence_proto_to_midi_file(sequence, 'sample.mid')
+for i in range(20):
+    sequence = generator.generate(music_pb2.NoteSequence(), generator_options)
+    mm.sequence_proto_to_midi_file(sequence, 'sample'+i+'.mid')
